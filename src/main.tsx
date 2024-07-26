@@ -9,7 +9,7 @@ import { Theme } from "@radix-ui/themes";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <Theme accentColor="crimson">
+    <Theme accentColor="blue">
       <Provider store={store}>
         <Router>
           <App />

@@ -1,3 +1,3 @@
 import SignUp from "./(auth)/Signup";
-
-export { SignUp };
+import Sidebar from "../utils/Sidebar";
+export { SignUp, Sidebar };
