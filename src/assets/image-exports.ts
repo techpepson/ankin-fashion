@@ -1,3 +1,3 @@
 import logo from "../../public/images/Ankin-icon.jpg";
-
-export { logo };
+import sideImage from "../../public/images/sideImage.jpeg";
+export { logo, sideImage };

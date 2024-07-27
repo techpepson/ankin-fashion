@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { userSlice } from "./user.slice";
-
+import { productSlice } from "./product.slice";
 //store definition for state management
 export const store = configureStore({
   reducer: {
     user: userSlice.reducer,
+    product: productSlice.reducer,
   },
 });
 

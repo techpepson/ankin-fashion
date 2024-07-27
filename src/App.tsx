@@ -1,6 +1,6 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { SignUp, Sidebar } from "./components/component-export";
+import { SignUp, Sidebar, AddProduct } from "./components/component-export";
 import "@radix-ui/themes/styles.css";
 
 const App: React.FC = () => {
@@ -8,6 +8,7 @@ const App: React.FC = () => {
     <Routes>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/sidebar" element={<Sidebar />} />
+      <Route path="/add-product" element={<AddProduct />} />
     </Routes>
   );
 };
