@@ -1,13 +1,16 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../global-states/store.reducer";
+import { postProducts } from "../../global-states/api/product.thunk.api";
 import {
   updateItemName,
   updateItemBrand,
   updateItemCategory,
   updateItemImages,
   updateItemDescription,
+  updateItemType,
   updateItemPrice,
+  updateItemAvailability,
 } from "../../global-states/product.slice";
 import {
   Button,
@@ -17,6 +20,7 @@ import {
   Heading,
   RadioGroup,
   ScrollArea,
+  Spinner,
   Text,
   TextArea,
   TextField,
@@ -34,7 +38,12 @@ const AddProduct: React.FC = () => {
     itemAvailability,
     itemBrand,
     itemImages,
+    itemType,
     itemPrice,
+    itemCategory,
+    success,
+    loading,
+    failure,
   } = useSelector((state: RootState) => state.product);
 
   //dispatch function for the update of fields
@@ -48,18 +57,55 @@ const AddProduct: React.FC = () => {
     switch (name) {
       case "itemName":
         dispatch(updateItemName(value));
+        console.log(itemName);
         break;
       case "itemDescription":
         dispatch(updateItemDescription(value));
-        break;
-      case "itemCategory":
-        dispatch(updateItemCategory(value));
+        console.log(itemDescription);
         break;
       case "itemBrand":
         dispatch(updateItemBrand(value));
+        console.log(itemBrand);
         break;
       case "itemPrice":
         dispatch(updateItemPrice(value));
+        console.log(itemPrice);
+        break;
+      case "itemImage":
+    }
+  };
+
+  //function to push the details to the database
+  const handleSubmit = (e: React.FormEvent<HTMLButtonElement>) => {
+    const productItems = {
+      itemName,
+      itemAvailability,
+      itemBrand,
+      itemCategory,
+      itemDescription,
+      itemImages,
+      itemType,
+      itemPrice,
+    };
+    e.preventDefault();
+    dispatch(postProducts(productItems));
+    success && console.log("I have been submitted");
+  };
+
+  //function to handle radio button update
+  const handleRadioChange = (value: boolean) => {
+    dispatch(updateItemAvailability(value));
+  };
+
+  //function to convert images into url strings
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (files && files.length > 0) {
+      const imageURL = Array.from(files).map((file) =>
+        URL.createObjectURL(file)
+      );
+      dispatch(updateItemImages(imageURL));
+      console.log(itemImages);
     }
   };
 
@@ -160,6 +206,11 @@ const AddProduct: React.FC = () => {
                     <RadioGroup.Root
                       name="itemCategory"
                       className={`${addProductStyles.radioStyles}`}
+                      onValueChange={(value) => {
+                        dispatch(updateItemCategory(value));
+                        console.log(itemCategory);
+                      }}
+                      value={itemCategory}
                     >
                       <Flex className={`${addProductStyles.radioStyles} gap-3`}>
                         <RadioGroup.Item
@@ -202,7 +253,12 @@ const AddProduct: React.FC = () => {
                     </Text>
                     <RadioGroup.Root
                       name="itemType"
+                      value={itemType}
                       className={`${addProductStyles.radioStyles} mt-4`}
+                      onValueChange={(value) => {
+                        dispatch(updateItemType(value));
+                        console.log(itemType);
+                      }}
                     >
                       {/*flex for cloth radio*/}
                       <Flex className={`${addProductStyles.radioStyles} gap-3`}>
@@ -230,7 +286,10 @@ const AddProduct: React.FC = () => {
                       </Flex>
                       {/*flex for suits radio*/}
                       <Flex className={`${addProductStyles.radioStyles} gap-3`}>
-                        <RadioGroup.Item value="suits" className="cursor-pointer"/>
+                        <RadioGroup.Item
+                          value="suits"
+                          className="cursor-pointer"
+                        />
                         <Text>Suits</Text>
                       </Flex>
                       {/*flex for officials*/}
@@ -272,6 +331,10 @@ const AddProduct: React.FC = () => {
                   <RadioGroup.Root
                     name="itemAvailability"
                     className={`${addProductStyles.radioStyles} mt-4`}
+                    onValueChange={(value) =>
+                      handleRadioChange(value === "true")
+                    }
+                    value={String(itemAvailability)}
                   >
                     {/*affirm availability*/}
                     <Flex className={`${addProductStyles.radioStyles} gap-3`}>
@@ -279,7 +342,7 @@ const AddProduct: React.FC = () => {
                         Yes
                       </Text>
                       <RadioGroup.Item
-                        value={`${itemAvailability}`}
+                        value="true"
                         id="yes"
                         className="cursor-pointer"
                       />
@@ -289,7 +352,7 @@ const AddProduct: React.FC = () => {
                         No
                       </Text>
                       <RadioGroup.Item
-                        value={`${!itemAvailability}`}
+                        value="false"
                         id="no"
                         className="cursor-pointer"
                       />
@@ -329,7 +392,7 @@ const AddProduct: React.FC = () => {
                     multiple
                     name="itemImages"
                     id="item-images"
-                    value={itemImages}
+                    onChange={handleImageChange}
                   />
                   <Callout.Root>
                     <Callout.Icon>
@@ -341,9 +404,14 @@ const AddProduct: React.FC = () => {
                 </div>
               </div>
               {/*submit button*/}
-              <div className="flex mt-5 justify-end">
-                <Button type="submit" size="3" className="cursor-pointer">
-                  Submit
+              <div className={`flex mt-5 justify-end`}>
+                <Button
+                  type="submit"
+                  size="3"
+                  className="cursor-pointer"
+                  onClick={handleSubmit}
+                >
+                  {loading ? <Spinner /> : "Submit"}
                 </Button>
               </div>
             </form>
@@ -352,7 +420,7 @@ const AddProduct: React.FC = () => {
       </ScrollArea>
 
       {/*side video*/}
-      <div>
+      <div className="md:flex max-md:hidden">
         <img
           className="h-screen"
           src={sideImage}

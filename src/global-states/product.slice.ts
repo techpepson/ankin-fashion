@@ -1,6 +1,7 @@
 //global state management for the add to product page
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductSliceTypes } from "../typedefs/product.slice";
+import { postProducts } from "./api/product.thunk.api";
 
 const initialState: ProductSliceTypes = {
   itemName: "",
@@ -12,6 +13,9 @@ const initialState: ProductSliceTypes = {
   itemImages: [],
   itemType: "",
   itemPrice: "",
+  success: false,
+  loading: false,
+  failure: false,
 };
 
 export const productSlice = createSlice({
@@ -40,13 +44,31 @@ export const productSlice = createSlice({
       state.itemBrand = action.payload;
     },
     updateItemType: (state, action: PayloadAction<string>) => {
-      state.itemBrand = action.payload;
+      state.itemType = action.payload;
     },
     //map over images to update the individual images
     updateItemImages: (state, action: PayloadAction<string[]>) => {
       //loop through the items to get the images individually
-      state.itemImages = action.payload;
+      state.itemImages = [...state.itemImages, ...action.payload];
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(postProducts.pending, (state) => {
+        state.loading = true;
+        state.success = false;
+        state.failure = false;
+      })
+      .addCase(postProducts.fulfilled, (state) => {
+        state.loading = false;
+        state.success = true;
+        state.failure = false;
+      })
+      .addCase(postProducts.rejected, (state) => {
+        state.loading = false;
+        state.success = false;
+        state.failure = true;
+      });
   },
 });
 

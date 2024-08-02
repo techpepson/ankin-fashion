@@ -8,4 +8,7 @@ export interface ProductSliceTypes {
   itemImages: string[];
   itemType: string;
   itemPrice: string;
+  success: boolean;
+  loading: boolean;
+  failure: boolean;
 }
