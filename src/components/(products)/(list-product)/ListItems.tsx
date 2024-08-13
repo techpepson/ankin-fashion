@@ -27,7 +27,7 @@ const ListItems: React.FC = () => {
 
   const getItem = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/items/${id}`, {
+      const response = await axios.get(`https://ankin-server.onrender.com/items/${id}`, {
         headers: {
           "Content-Type": "application/json",
         },

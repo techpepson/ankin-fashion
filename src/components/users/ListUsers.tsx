@@ -19,7 +19,9 @@ const ListUsers: React.FC = () => {
   // Function to make a call to the server for user details
   const handleUserDetails = async () => {
     try {
-      const userResponse = await axios.get("http://localhost:5000/api/users");
+      const userResponse = await axios.get(
+        "https://ankin-server.onrender.com/api/users"
+      );
       const dataResponse = userResponse.data.userData;
       setUsers(dataResponse);
     } catch (error) {

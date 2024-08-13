@@ -21,12 +21,15 @@ const MenItems: React.FC = () => {
   // Function to make a GET request from the server
   const getMenItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/get-men", {
-        // Updated endpoint
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        "https://ankin-server.onrender.com/get-men",
+        {
+          // Updated endpoint
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       // Initialize data with the response from the server
       const data = response.data;
       // Update state with items from the server

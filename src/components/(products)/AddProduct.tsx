@@ -147,7 +147,7 @@ const AddProduct: React.FC = () => {
             </div>
             {/*form section for adding to products*/}
             <form
-              action="http://localhost:5000/api/products"
+              action="https://ankin-server.onrender.com/api/products"
               method="POST"
               encType="multipart/form-data"
             >

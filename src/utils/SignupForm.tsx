@@ -63,7 +63,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
         {/* div container to wrap the name input field */}
         <Card className="bg-[#f0fdfa]">
           <form
-            action="http://localhost:5000/api/signup"
+            action="https://ankin-server.onrender.com/api/signup"
             method="POST"
             className={`${signUpStyles.signupFormStyle}`}
           >

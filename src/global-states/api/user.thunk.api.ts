@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //define an asyncThunk to handle axios posts to the API
-const uri = "http://localhost:5000/api/signup";
+const uri = "https://ankin-server.onrender.com/api/signup";
 
 export const handleUserDetails: any = createAsyncThunk(
   "/api/signup",

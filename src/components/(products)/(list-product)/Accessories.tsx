@@ -22,7 +22,7 @@ const Accessories: React.FC = () => {
   const getAccessoriesItems = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/get-accessories`,
+        `https://ankin-server.onrender.com/get-accessories`,
         {
           headers: {
             "Content-Type": "application/json",

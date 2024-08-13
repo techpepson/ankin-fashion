@@ -22,11 +22,14 @@ const WomenItems: React.FC = () => {
   // Function to make a GET request from the server
   const getWomenItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/get-women", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        "https://ankin-server.onrender.com/get-women",
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setItems(response.data);
     } catch (error) {
       console.error(error);

@@ -21,7 +21,7 @@ const UnisexItems: React.FC = () => {
   // Function to make a GET request from the server
   const getUnisexItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/get-unisex", {
+      const response = await axios.get("https://ankin-server.onrender.com/get-unisex", {
         headers: {
           "Content-Type": "application/json",
         },

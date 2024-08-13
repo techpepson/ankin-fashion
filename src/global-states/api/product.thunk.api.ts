@@ -4,7 +4,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //api endpoint
-const endpoint = "http://localhost:5000/api/products";
+const endpoint = "https://ankin-server.onrender.com/api/products";
 
 export const postProducts: any = createAsyncThunk(
   "api/products",
