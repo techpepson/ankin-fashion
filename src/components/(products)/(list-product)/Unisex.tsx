@@ -2,67 +2,95 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Men: React.FC = () => {
+const UnisexItems: React.FC = () => {
   // State management of items from the server
-  const [items, setItems] = useState<any[]>([]); // Use a more specific type if possible
-  const navigate = useNavigate();   
+  interface Item {
+    id: string;
+    itemCategory: string;
+    itemImages: string[];
+    itemName: string;
+    itemDescription: string;
+    itemBrand: string;
+    itemPrice: number;
+    _id: string | number;
+  }
+
+  const [items, setItems] = useState<Item[]>([]);
+  const navigate = useNavigate();
+
   // Function to make a GET request from the server
-  const getMenItems = async () => {
+  const getUnisexItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/unisex", {
-        // Updated endpoint
+      const response = await axios.get("http://localhost:5000/get-unisex", {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      // Initialize data with the response from the server
-      const data = response.data;
-      // Update state with items from the server
-      setItems(data);
+      setItems(response.data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  // useEffect to call the getMenItems function
+  // useEffect to call the getUnisexItems function
   useEffect(() => {
-    getMenItems();
+    getUnisexItems();
   }, []);
 
-  //function to route to the items page
-  const directToItems = (id)=>{
-    navigate(`/items/${id}`)
-  }
+  // Function to route to the items page
+  const directToItems = (id: string | number) => {
+    navigate(`/list-products/${id}`);
+  };
 
   return (
-    <div>
-      {items.map(
-        (item) =>
-          item.itemCategory === "unisex" && ( // Check each item's category
-            <div key={item.id}>
-              {" "}
-              {/* Add a unique key for each item */}
-              <img
-                src={item.itemImages[0]} // Use the first image
-                alt={`Image of ${item.itemName}`}
-              />
-              {/* Container for product name and descriptions with texts */}
-              <div>
-                <h3>{item.itemName}</h3>
-                <p>{item.itemDescription}</p>
-                <p>{item.itemBrand}</p>
-                <p>Ghc{item.itemPrice}</p> {/* Added a dollar sign */}
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-bold mb-6 text-center">Unisex Clothing</h1>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        {items.length > 0 ? (
+          items.map((item) =>
+            item ? (
+              <div
+                key={item._id}
+                className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300"
+              >
+                <img
+                  src={item.itemImages[0]}
+                  alt={`Image of ${item.itemName}`}
+                  className="w-full h-48 object-cover"
+                />
+                <div className="p-4">
+                  <h3 className="text-lg font-semibold">{item.itemName}</h3>
+                  <p className="text-gray-600 text-sm mt-1">
+                    {item.itemDescription}
+                  </p>
+                  <p className="text-gray-800 font-semibold mt-2">
+                    Ghc {item.itemPrice}
+                  </p>
+                  <div className="mt-4 flex justify-between">
+                    <button
+                      onClick={() => directToItems(item._id)}
+                      className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-200"
+                    >
+                      Buy
+                    </button>
+                    <button className="bg-gray-300 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-400 transition duration-200">
+                      Reserve
+                    </button>
+                  </div>
+                </div>
               </div>
-              {/* Button to purchase the cloth */}
-              <div>
-                <button onClick={directToItems({item._id})}>Buy</button>
-                <button>Reserve</button>
-              </div>
-            </div>
+            ) : null
           )
-      )}
+        ) : (
+          <div className="col-span-1 text-center">
+            <p className="text-gray-600">
+              Oops! There are no unisex items to display now.
+            </p>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
 
-export default Men;
+export default UnisexItems;

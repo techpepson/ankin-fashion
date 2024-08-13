@@ -5,4 +5,7 @@ export interface User {
   password: string | number;
   confirmPassword: string | number;
   phoneNumber: number;
+  fulfilled: boolean;
+  rejected: boolean;
+  pending: boolean;
 }

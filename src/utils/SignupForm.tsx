@@ -46,6 +46,7 @@ const SignupForm: React.FC<SignupFormProps> = ({
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
+
   return (
     <Container className="bg-[#64748b]">
       {/*signup welcome text*/}
@@ -61,7 +62,11 @@ const SignupForm: React.FC<SignupFormProps> = ({
         />
         {/* div container to wrap the name input field */}
         <Card className="bg-[#f0fdfa]">
-          <form action="" className={`${signUpStyles.signupFormStyle}`}>
+          <form
+            action="http://localhost:5000/api/signup"
+            method="POST"
+            className={`${signUpStyles.signupFormStyle}`}
+          >
             <div>
               {/* Name label */}
               <Text as="label" htmlFor="user-name">

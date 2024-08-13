@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const KidItems: React.FC = () => {
+const Accessories: React.FC = () => {
   // State management of items from the server
   interface Item {
     id: string;
@@ -19,13 +19,16 @@ const KidItems: React.FC = () => {
   const navigate = useNavigate();
 
   // Function to make a GET request from the server
-  const getKidsItems = async () => {
+  const getAccessoriesItems = async () => {
     try {
-      const response = await axios.get(`http://localhost:5000/get-kids`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await axios.get(
+        `http://localhost:5000/get-accessories`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       setItems(response.data);
     } catch (error) {
       console.error(error);
@@ -34,7 +37,7 @@ const KidItems: React.FC = () => {
 
   // useEffect to call the getKidsItems function
   useEffect(() => {
-    getKidsItems();
+    getAccessoriesItems();
   }, []);
 
   // Function to route to the items page
@@ -44,7 +47,7 @@ const KidItems: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-6 text-center">Kids Clothing</h1>
+      <h1 className="text-2xl font-bold mb-6 text-center">Browse Our Collection of Accessories</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {items.length > 0 ? (
           items.map((item) =>
@@ -93,4 +96,4 @@ const KidItems: React.FC = () => {
   );
 };
 
-export default KidItems;
+export default Accessories;

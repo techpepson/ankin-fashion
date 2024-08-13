@@ -4,10 +4,10 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 //api endpoint
-const endpoint = "http://localhost:4000/post-product";
+const endpoint = "http://localhost:5000/api/products";
 
 export const postProducts: any = createAsyncThunk(
-  "products/postProducts",
+  "api/products",
   async (data, thunkAPI) => {
     try {
       const response = await axios.post(endpoint, data);

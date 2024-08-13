@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const MenItems: React.FC = () => {
+const ListAllProducts: React.FC = () => {
   // State management of items from the server
   interface Item {
     id: string;
@@ -21,14 +21,14 @@ const MenItems: React.FC = () => {
   // Function to make a GET request from the server
   const getMenItems = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/get-men", {
+      const response = await axios.get("http://localhost:5000/api/products", {
         // Updated endpoint
         headers: {
           "Content-Type": "application/json",
         },
       });
       // Initialize data with the response from the server
-      const data = response.data;
+      const data = response.data.productData;
       // Update state with items from the server
       setItems(data);
     } catch (error) {
@@ -43,7 +43,7 @@ const MenItems: React.FC = () => {
 
   // Function to route to the items page
   const directToItems = (id: string | number) => {
-    navigate(`/list-products/${id}`);
+    navigate(`/items/${id}`);
   };
 
   return (
@@ -88,7 +88,7 @@ const MenItems: React.FC = () => {
           </div>
         ) : (
           <div>
-            <p>There are no men listings today</p>
+            <p>There are no listings in the database</p>
           </div>
         )
       )}
@@ -96,4 +96,4 @@ const MenItems: React.FC = () => {
   );
 };
 
-export default MenItems;
+export default ListAllProducts;

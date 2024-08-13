@@ -40,7 +40,7 @@ const Sidebar: React.FC = () => {
             <button className="flex gap-3">
               <span className={`${styleSideBar.iconColor}`}>{icons.users}</span>
               <Link
-                to="/users"
+                to="/list-users"
                 className={`hover:text-[#8b5cf6] transition-colors duration-75`}
               >
                 <span>Users</span>
@@ -54,7 +54,7 @@ const Sidebar: React.FC = () => {
                 {icons.products}
               </span>
               <Link
-                to="/products"
+                to="/all-products"
                 className={`hover:text-[#8b5cf6] transition-colors duration-75`}
               >
                 <span>Products</span>

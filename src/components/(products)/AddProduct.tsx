@@ -43,7 +43,6 @@ const AddProduct: React.FC = () => {
     itemCategory,
     success,
     loading,
-    failure,
   } = useSelector((state: RootState) => state.product);
 
   //dispatch function for the update of fields
@@ -101,8 +100,8 @@ const AddProduct: React.FC = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (files && files.length > 0) {
-      const imageURL = Array.from(files).map((file) =>
-        URL.createObjectURL(file)
+      const imageURL = Array.from(files).map(
+        (file) => URL.createObjectURL(file) //this section converts the image into a URl link to be used in the server
       );
       dispatch(updateItemImages(imageURL));
       console.log(itemImages);
@@ -147,7 +146,11 @@ const AddProduct: React.FC = () => {
               </Heading>
             </div>
             {/*form section for adding to products*/}
-            <form action="" method="POST">
+            <form
+              action="http://localhost:5000/api/products"
+              method="POST"
+              encType="multipart/form-data"
+            >
               {/*general form container*/}
               <div className={`${addProductStyles.formContainer}`}>
                 {/*name input field container to add to products*/}
