@@ -14,13 +14,10 @@ import {
   Accessories,
   Home,
 } from "./components/component-export";
-import Navbar from "./components/Navbar.tsx";
 import "@radix-ui/themes/styles.css";
 
 const App: React.FC = () => {
   return (
-    <div className="flex flex-wrap gap-1 p-1>
-      <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
@@ -35,8 +32,6 @@ const App: React.FC = () => {
         <Route path="/accessories" element={<Accessories />} />
         <Route path="/list-products/:id" element={<ListItems />} />
       </Routes>
-    </div>
-    
   );
 };
 
