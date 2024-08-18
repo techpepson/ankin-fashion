@@ -20,23 +20,23 @@ const Navbar: React.FC = () => {
           {menu === 'shop' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('Men')}>
-          <Link style={{ textDecoration: 'none' }} to="/Men">Men</Link> 
+          <Link style={{ textDecoration: 'none' }} to="/men-items">Men</Link> 
           {menu === 'Men' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('womens')}>
-          <Link style={{ textDecoration: 'none' }} to="/womens">Women</Link>
+          <Link style={{ textDecoration: 'none' }} to="/women-items">Women</Link>
           {menu === 'womens' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('kids')}>
-          <Link style={{ textDecoration: 'none' }} to="/kids">Kids</Link> 
+          <Link style={{ textDecoration: 'none' }} to="/kids-items">Kids</Link> 
           {menu === 'kids' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('bags')}>
-          <Link style={{ textDecoration: 'none' }} to="/bags">Bags</Link> 
+          <Link style={{ textDecoration: 'none' }} to="/accessories">Bags</Link> 
           {menu === 'bags' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('shoes')}>
-          <Link style={{ textDecoration: 'none' }} to="/shoes">Shoes</Link>
+          <Link style={{ textDecoration: 'none' }} to="/accessories">Shoes</Link>
           {menu === 'shoes' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('blogs')}>
