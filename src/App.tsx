@@ -14,7 +14,7 @@ import {
   Accessories,
   Home,
 } from "./components/component-export";
-import Navbar from "./components/Navbar.tsx"
+import Navbar from "./components/Navbar.tsx";
 import "@radix-ui/themes/styles.css";
 
 const App: React.FC = () => {
