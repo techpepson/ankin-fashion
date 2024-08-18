@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
           {menu === 'womens' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('kids')}>
-          <Link style={{ textDecoration: 'none' }} to="/kids-items">Kids</Link> 
+          <Link style={{ textDecoration: 'none' }} to="/kids">Kids</Link> 
           {menu === 'kids' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('bags')}>
@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
           {menu === 'shoes' ? <hr /> : null}
         </li>
         <li onClick={() => setMenu('blogs')}>
-          <Link style={{ textDecoration: 'none' }} to="/blogs">Blogs</Link>
+          <Link style={{ textDecoration: 'none', marginRight: "5px" }} to="/blogs">Blogs</Link>
           {menu === 'blogs' ? <hr /> : null}
         </li>
       </ul>
