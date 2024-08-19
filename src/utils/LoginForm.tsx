@@ -82,7 +82,6 @@ const LoginForm: React.FC<LoginFormProps> = ({
             padding: "10px",
             borderRadius: "4px",
             border: "1px solid",
-            color: "white",
           }}
         />
       </div>
