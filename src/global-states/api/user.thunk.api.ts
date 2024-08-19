@@ -27,7 +27,7 @@ export const handleLogin: any = createAsyncThunk(
       const token = response.data.token; // Assuming the response contains a token
       return token;
     } catch (error) {
-      console.error({ Error: thunk.rejectWithValue(error.message) });
+      console.error({ Error: thunk.rejectWithValue(error) });
       throw error;
     }
   }
