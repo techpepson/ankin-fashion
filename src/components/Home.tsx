@@ -3,7 +3,7 @@ import { MenItems, WomenItems, KidItems, Accessories } from "./component-export"
 
 const Home: React.FC = () => (
   <>
-    <div className="grid grid-cols-5 gap-1">
+    <div className="grid grid-cols-3">
       <div>
         <MenItems />
       </div>

@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import {
   SignUp,
-  Sidebar,
   AddProduct,
   ListItems,
   WomenItems,
@@ -25,7 +24,6 @@ const App: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/women-items" element={<WomenItems />} />
         <Route path="/men-items" element={<MenItems />} />
