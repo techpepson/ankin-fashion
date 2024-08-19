@@ -14,10 +14,14 @@ import {
   Accessories,
   Home,
 } from "./components/component-export";
+import Navbar from "./components/Navbar/navbar";
 import "@radix-ui/themes/styles.css";
+import Footer from "./components/Footer/footer";
 
 const App: React.FC = () => {
   return (
+    <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
@@ -32,6 +36,8 @@ const App: React.FC = () => {
         <Route path="/accessories" element={<Accessories />} />
         <Route path="/list-products/:id" element={<ListItems />} />
       </Routes>
+      <Footer />
+    </>
   );
 };
 

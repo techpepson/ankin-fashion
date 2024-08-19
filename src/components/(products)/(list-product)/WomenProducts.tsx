@@ -1,9 +1,10 @@
 import { ScrollArea } from "@radix-ui/themes";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const WomenItems: React.FC = () => {
+  const location = useLocation();
   // State management of items from the server
   interface Item {
     id: string;
@@ -56,7 +57,9 @@ const WomenItems: React.FC = () => {
       >
         <div className="container mx-auto p-4">
           <h1 className="text-2xl font-bold mb-6 text-center">
-            Women Clothing
+            {location.pathname === "/women-items"
+              ? "Browse Our Collection of Women Items"
+              : ""}{" "}
           </h1>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {items.length > 0 ? (

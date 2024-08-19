@@ -1,8 +1,11 @@
+import { Heading } from "@radix-ui/themes";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const MenItems: React.FC = () => {
+  const location = useLocation();
   // State management of items from the server
   interface Item {
     id: string;
@@ -51,6 +54,15 @@ const MenItems: React.FC = () => {
 
   return (
     <div className="container mx-auto p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div>
+        {location.pathname === "/men-items" ? (
+          <Heading className="justify-center items-center">
+            "Browse Our Collection of Men Items"
+          </Heading>
+        ) : (
+          ""
+        )}
+      </div>
       {items.map((item) =>
         item ? ( // Check each item's category
           <div
