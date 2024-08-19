@@ -23,10 +23,15 @@ const LoginForm: React.FC<LoginFormProps> = ({
         e.preventDefault();
         handleSubmit();
       }}
+      method="POST"
+      action="https://ankin-server.onrender.com/api/login"
       style={{ maxWidth: "400px", margin: "0 auto" }}
     >
       <div style={{ marginBottom: "15px" }}>
-        <label htmlFor="email" style={{ display: "block", marginBottom: "5px" }}>
+        <label
+          htmlFor="email"
+          style={{ display: "block", marginBottom: "5px" }}
+        >
           Email
         </label>
         <input
@@ -45,7 +50,10 @@ const LoginForm: React.FC<LoginFormProps> = ({
       </div>
 
       <div style={{ marginBottom: "15px" }}>
-        <label htmlFor="password" style={{ display: "block", marginBottom: "5px" }}>
+        <label
+          htmlFor="password"
+          style={{ display: "block", marginBottom: "5px" }}
+        >
           Password
         </label>
         <input
@@ -59,7 +67,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
             padding: "10px",
             borderRadius: "4px",
             border: "1px solid",
-            color:"white"
+            color: "white",
           }}
         />
       </div>
