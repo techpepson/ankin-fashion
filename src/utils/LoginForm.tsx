@@ -1,6 +1,9 @@
 //login utility component
 //login utility component
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { handleLogin } from "../global-states/api/user.thunk.api";
+import { RootState } from "../global-states/store.reducer";
 
 interface LoginFormProps {
   handleSubmit: () => void;
@@ -17,6 +20,18 @@ const LoginForm: React.FC<LoginFormProps> = ({
   onEmailChange,
   onPasswordChange,
 }) => {
+  const { email, password } = useSelector((state: RootState) => state.user);
+
+  const dispatch = useDispatch();
+
+  const sendLoginDetails = () => {
+    dispatch(
+      handleLogin({
+        userEmail: email,
+        userPassword: password,
+      })
+    );
+  };
   return (
     <form
       onSubmit={(e) => {
@@ -73,6 +88,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
       </div>
 
       <button
+        onClick={sendLoginDetails}
         type="submit"
         style={{
           width: "100%",
