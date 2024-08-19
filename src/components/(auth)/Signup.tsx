@@ -2,6 +2,7 @@ import React from "react";
 import SignupForm from "../../utils/SignupForm";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../global-states/store.reducer";
+import { useNavigate } from "react-router-dom";
 import {
   updateName,
   updateEmail,
@@ -12,6 +13,7 @@ import {
 import { handleUserDetails } from "../../global-states/api/user.thunk.api";
 
 const SignUp: React.FC = () => {
+  const navigate = useNavigate();
   //get the initialStates from the store
   const { name, email, password, confirmPassword, phoneNumber } = useSelector(
     (state: RootState) => state.user
@@ -19,12 +21,15 @@ const SignUp: React.FC = () => {
   //function to submit user details
   const sendUserDetails = () => {
     dispatch(
-      handleUserDetails({
-        userName: name,
-        userEmail: email,
-        userPassword: password,
-        userPhone: phoneNumber,
-      })
+      handleUserDetails(
+        {
+          userName: name,
+          userEmail: email,
+          userPassword: password,
+          userPhone: phoneNumber,
+        },
+        navigate
+      )
     );
   };
 
